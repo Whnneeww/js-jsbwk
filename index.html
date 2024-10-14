@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML取得デモ</title>
+</head>
+<body>
+    <h1>実行結果の表示</h1>
+    <div id="result"></div>
+    <script>
+        async function fetchHtml() {
+            try {
+                const response = await fetch('https://trendect.online/dodemo_trend.php');
+                if (!response.ok) {
+                    throw new Error('ネットワークエラーが発生しました。');
+                }
+
+                const html = await response.text();
+                document.getElementById('result').innerHTML = html;
+
+            } catch (error) {
+                console.error('エラー:', error);
+                document.getElementById('result').innerText = 'エラーが発生しました。';
+            }
+        }
+
+        fetchHtml();
+    </script>
+</body>
+</html>
